@@ -1,0 +1,14 @@
+ doctype html
+ html 
+     head 
+        title= `${title}`
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+     body    
+         h1 Disc Golf discs
+         .cards 
+            each contact in data
+                 .card 
+                    h2.card__name #{contact.properties.disc_name} 
+                     p.card__manufacturer #{contact.properties.manufacturer}
+                     p.card__speed #{contact.properties.speed}
