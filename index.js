@@ -11,15 +11,16 @@ app.use(express.json());
 const PRIVATE_APP_ACCESS = '';
 
 app.get('/discs', async (req, res) => {
-    const contacts = 'https://api.hubspot.com/crm/v3/schemas/2-32818682';
+    const discs = 'https://api.hubspot.com/crm/v3/objects/2-32818682?properties=disc_name,speed,manufacturer';
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
     }
     try {
-        const resp = await axios.get(contacts, { headers });
-        const data = resp.data.results;
-        res.render('contacts', { title: 'Disc Golf Discs | HubSpot APIs', data });      
+        const resp = await axios.get(discs, { headers });
+        const data = resp.data.results
+              
+        res.render('discs', { title: 'Disc Golf Discs | HubSpot APIs', data });   
     } catch (error) {
         console.error(error);
     }
