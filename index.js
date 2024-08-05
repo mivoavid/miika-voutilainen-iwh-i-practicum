@@ -28,38 +28,31 @@ app.get('/', async (req, res) => {
 
 
 app.get('/update-cobj', async (req, res) => {
-   
-        res.render('updates', { title: 'Disc Golf Discs | Update / add' });   
-   
+    res.render('updates', { title: 'Disc Golf Discs | Add' });
 });
 
 app.post('/update-cobj', async (req, res) => {
-    const update = {
-        properties: {
-            "disc_name": "Test",
-            "manufacturer": "Innova",
-            "speed": "13"
-        }
-    }
-
-    const discname = req.query.disc_name;
-    const manufacturer = req.query.manufacturer;
-    const speed = req.query.speed;
-    const updateContact = `https://api.hubapi.com/crm/v3/objects/2-32818682/?idProperty=email`;
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
+    }
+    const update = {
+        properties: {
+            "disc_name": req.body.discname,
+            "manufacturer": req.body.manufacturer,
+            "speed": req.body.speed
+        }
     };
 
-    try { 
-        await axios.patch(updateContact, update, { headers } );
-        res.redirect('back');
-    } catch(err) {
-        console.error(err);
-    }
+    const updateDiscsUrl = `https://api.hubapi.com/crm/v3/objects/2-32818682`;
 
+    try {
+        await axios.post(updateDiscsUrl, update, { headers });
+        res.redirect('/update-cobj');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error updating custom object');
+    }
 });
 
-
-// * Localhost
 app.listen(3000, () => console.log('Listening on http://localhost:3000'));
