@@ -1,17 +1,21 @@
 doctype html
 html 
     head 
-        title= `${title}`
+        title= title
         meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet", href="/css/style.css")
     body    
         h1 Disc Golf discs - Update
-        form(action="/update-cobj", method='POST')
+        a(href="/") Back to listing page
+        form(action="/update-cobj", method="POST")
             p
-            | Disc name: 
-            input(type='text', name='discname', value='')
-            |          Manufacturer: 
-            input(type='text', name='manufacturer', value='')
-            |          Speed: 
-            input(type='text', name='speed', value='')
-            input(type='submit', value='Submit')
+                | Disc name: 
+                input(type="text", name="discname", value="")
+            p
+                | Manufacturer: 
+                input(type="text", name="manufacturer", value="")
+            p
+                | Speed: 
+                input(type="text", name="speed", value="")
+            p
+                input(type="submit", value="Submit")
