@@ -6,3 +6,12 @@ html
         link(rel="stylesheet", href="/css/style.css")
     body    
         h1 Disc Golf discs - Update
+        form(action="/update-cobj", method='POST')
+            p
+            | Disc name: 
+            input(type='text', name='discname', value='')
+            |          Manufacturer: 
+            input(type='text', name='manufacturer', value='')
+            |          Speed: 
+            input(type='text', name='speed', value='')
+            input(type='submit', value='Submit')
