@@ -20,7 +20,7 @@ app.get('/', async (req, res) => {
         const resp = await axios.get(discs, { headers });
         const data = resp.data.results
               
-        res.render('discs', { title: 'Disc Golf Discs | HubSpot APIs', data });   
+        res.render('homepage', { title: 'Disc Golf Discs | HubSpot APIs', data });   
     } catch (error) {
         console.error(error);
     }
@@ -28,7 +28,7 @@ app.get('/', async (req, res) => {
 
 
 app.get('/update-cobj', async (req, res) => {
-    res.render('updates', { title: 'Disc Golf Discs | Add' });
+    res.render('updates', { title: 'Update Custom Object Form | Integrating With HubSpot I Practicum' });
 });
 
 app.post('/update-cobj', async (req, res) => {
@@ -48,7 +48,7 @@ app.post('/update-cobj', async (req, res) => {
 
     try {
         await axios.post(updateDiscsUrl, update, { headers });
-        res.redirect('/update-cobj');
+        res.redirect('/');
     } catch (err) {
         console.error(err);
         res.status(500).send('Error updating custom object');
