@@ -1,0 +1,18 @@
+doctype html
+html
+   head 
+      title= `${title}`
+      meta(name="viewport" content="width=device-width, initial-scale=1")
+      link(rel="stylesheet", href="/css/style.css")
+   body
+      div.content-wrapper    
+         h1 Disc Golf discs
+         p
+            a(href="/update-cobj") Add to this table
+         div.content-wrapper
+            .cards 
+               each discs in data
+                  .card 
+                     h2.card__name #{discs.properties.disc_name} 
+                     p.card__manufacturer Manufacturer:  #{discs.properties.manufacturer}
+                     p.card__speed Speed: #{discs.properties.speed}
