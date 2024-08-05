@@ -10,7 +10,7 @@ app.use(express.json());
 // * Please DO NOT INCLUDE the private app access token in your repo. Don't do this practicum in your normal account.
 const PRIVATE_APP_ACCESS = '';
 
-app.get('/discs', async (req, res) => {
+app.get('/', async (req, res) => {
     const discs = 'https://api.hubspot.com/crm/v3/objects/2-32818682?properties=disc_name,speed,manufacturer';
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
@@ -26,7 +26,7 @@ app.get('/discs', async (req, res) => {
     }
 });
 
-/*
+
 app.get('/update-cobj', async (req, res) => {
    
         res.render('updates', { title: 'Disc Golf Discs | Update / add' });   
@@ -42,7 +42,9 @@ app.post('/update-cobj', async (req, res) => {
         }
     }
 
-    const email = req.query.email;
+    const discname = req.query.disc_name;
+    const manufacturer = req.query.manufacturer;
+    const speed = req.query.speed;
     const updateContact = `https://api.hubapi.com/crm/v3/objects/2-32818682/?idProperty=email`;
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
@@ -57,7 +59,7 @@ app.post('/update-cobj', async (req, res) => {
     }
 
 });
-*/
+
 
 // * Localhost
 app.listen(3000, () => console.log('Listening on http://localhost:3000'));
